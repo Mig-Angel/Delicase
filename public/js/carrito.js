@@ -1,4 +1,4 @@
-var urlApi = 'https://delicase.vercel.app/';
+var urlApi = 'https://delicase.vercel.app';
 
 
 function cargaProductosCarrito() {
