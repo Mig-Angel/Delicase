@@ -88,6 +88,7 @@ $('#pedido').submit(function (evt) {
 		        	bootbox.alert("Error al procesar su solicitud");
 		        }
 		    }).catch(function (error) {
+			 bootbox.alert("No tienes conexión a internet, por favor no borres tu pedido hasta que te vuelvas conectar para enviar tu pedido");
 				addtoIndexdb(data);
 			})
 		} else {
