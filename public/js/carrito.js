@@ -1,4 +1,4 @@
-var urlApi = 'http://127.0.0.1:3000';
+var urlApi = 'https://delicase.vercel.app/';
 
 
 function cargaProductosCarrito() {
