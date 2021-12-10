@@ -1,5 +1,6 @@
 var session;
 
+// Funcion para mostrar el numero de items en el carrito
 function conteoCarrito() {
 	session = sessionStorage.getItem('carrito');
 
@@ -11,6 +12,7 @@ function conteoCarrito() {
 	}
 }
 
+// Funcion para agregar un alemento al carrito mediante el session storage
 function agregaProductoCarrito(producto) {
 	session = sessionStorage.getItem('carrito');
 	var carritoProductos = [];
@@ -27,6 +29,7 @@ function agregaProductoCarrito(producto) {
 	conteoCarrito();
 }
 
+// Funcoin para eliminar un producto espesifico en el session storage
 function eliminaProductoCarrito(index) {
 	session = sessionStorage.getItem('carrito');
 
@@ -42,19 +45,29 @@ function eliminaProductoCarrito(index) {
 
 conteoCarrito();
 
+// Se verifica si el navegador soporta el serviceworker
 if ('serviceWorker' in navigator) {
+	// Al tarminar de cargar la pagina se registra el service worker
 	window.addEventListener('load', function() {
-	  navigator.serviceWorker.register('/serviceworker.js').then(function(registration) {
-		// Registration was successful
-		console.log('ServiceWorker registration successful with scope: ', registration.scope);
-	  }, function(err) {
-		// registration failed :(
-		console.log('ServiceWorker registration failed: ', err);
-	  });
+		// Se registra el service worker
+		navigator.serviceWorker.register('/serviceworker.js')
+		.then(
+			// Catch en caso de registro exitoso
+			function(registration) {
+				// Registration was successful
+				console.log('ServiceWorker registration successful with scope: ', registration.scope);
+			}, 
+			// Catch en caso de registro fallido 
+			function(err) {
+				// registration failed :(
+				console.log('ServiceWorker registration failed: ', err);
+			}
+		);
 	});
-  }
+}
 
-  navigator.serviceWorker.ready.then((swRegistration)=>{
+// Dispara el evento 'sync' del service worker
+navigator.serviceWorker.ready.then((swRegistration)=>{
 	return swRegistration.sync.register('sincronizacion');
 }).then(function (){
 	console.log('Se inicio la sincronización');

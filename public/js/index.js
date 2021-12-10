@@ -1,9 +1,9 @@
 var urlApi = 'https://delicase.vercel.app';
 
 function cargaFiltros() {
- fetch(urlApi + '/general/getAllTiposProducto').then(response => response.json()).then(function (data) {
+    fetch(urlApi + '/general/getAllTiposProducto').then(response => response.json()).then(function (data) {
         document.getElementById('filtros').innerHTML='';
-  var lista = '';
+        var lista = '';
         data.forEach(function (el) {
            lista+=`
            <div class="col mb-1 text-center">
